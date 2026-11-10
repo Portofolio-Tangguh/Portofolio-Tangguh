@@ -23,123 +23,383 @@
 
     <style>
 
-    /* ==========================================
-       01. GLOBAL SETTINGS
-    ========================================== */
+   
+/* ==========================================
+   01. GLOBAL SETTINGS - PREMIUM VERSION
+========================================== */
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        scroll-behavior: smooth;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    :root {
-        --background: #0b0f14;
-        --surface: #121922;
-        --surface-light: #1a2430;
-        --primary: #ff8c32;
-        --primary-light: #ffad66;
-        --secondary: #42c8e8;
-        --text: #f1f5f9;
-        --muted: #94a3b8;
-        --border: rgba(255,255,255,0.09);
-        --transition: all 0.3s ease;
-    }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
 
-    body {
-        background: var(--background);
-        color: var(--text);
-        font-family: 'DM Sans', sans-serif;
-        overflow-x: hidden;
-        line-height: 1.7;
-    }
+:root {
+    --background: #090d12;
+    --surface: #111923;
+    --surface-light: #192432;
+    --primary: #ff963f;
+    --primary-light: #ffb36f;
+    --secondary: #42c8e8;
 
-    h1, h2, h3, h4 {
-        font-family: 'Space Grotesk', sans-serif;
-        line-height: 1.2;
-    }
+    --text: #f4f6fa;
+    --muted: #9ba9ba;
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 150, 63, 0.4);
 
-    img {
-        max-width: 100%;
-        display: block;
-    }
+    --shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    --shadow-orange: 0 10px 35px rgba(255, 150, 63, 0.16);
 
-    .container {
-        width: 90%;
-        max-width: 1150px;
-        margin: auto;
-    }
+    --radius: 16px;
+    --radius-small: 9px;
 
+    --transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================
+   02. BODY & BACKGROUND
+========================================== */
+
+body {
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(255, 150, 63, 0.055),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 45%,
+            rgba(66, 200, 232, 0.035),
+            transparent 30%
+        ),
+        var(--background);
+
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+
+    overflow-x: hidden;
+    line-height: 1.75;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-rendering: optimizeLegibility;
+}
+
+/* ==========================================
+   03. TYPOGRAPHY
+========================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    letter-spacing: -1px;
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================
+   04. CUSTOM SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090d12;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--primary),
+        #bd6528
+    );
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+/* ==========================================
+   05. TEXT SELECTION
+========================================== */
+
+::selection {
+    background: rgba(255, 150, 63, 0.3);
+    color: #ffffff;
+}
+
+/* ==========================================
+   06. CONTAINER & SECTION
+========================================== */
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 110px 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.section-title span {
+    display: inline-block;
+
+    color: var(--primary);
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 800;
+
+    padding: 8px 16px;
+    border-radius: 30px;
+
+    background: rgba(255, 150, 63, 0.08);
+    border: 1px solid rgba(255, 150, 63, 0.16);
+}
+
+.section-title h2 {
+    font-size: clamp(32px, 5vw, 46px);
+    margin-top: 18px;
+    color: var(--text);
+}
+
+.section-title p {
+    color: var(--muted);
+    margin-top: 15px;
+
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 15px;
+}
+
+/* ==========================================
+   07. TEXT HIGHLIGHT
+========================================== */
+
+.highlight {
+    color: var(--primary);
+}
+
+.highlight-gradient {
+    background: linear-gradient(
+        120deg,
+        #ff963f,
+        #ffd0a6
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   08. BUTTON BASE
+========================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 14px 27px;
+
+    border-radius: 10px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: var(--transition);
+
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==========================================
+   09. PRIMARY BUTTON
+========================================== */
+
+.btn-primary {
+    background: linear-gradient(
+        135deg,
+        #ff963f,
+        #ff7a24
+    );
+
+    color: #17110b;
+
+    box-shadow:
+        0 5px 20px rgba(255, 150, 63, 0.15);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        #ffb36f,
+        #ff963f
+    );
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(255, 150, 63, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   10. OUTLINE BUTTON
+========================================== */
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid var(--border);
+    color: var(--text);
+
+    backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 150, 63, 0.07);
+
+    border-color: var(--primary);
+    color: var(--primary);
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline:active {
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   11. GLOBAL HOVER EFFECT
+========================================== */
+
+button,
+.btn,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   12. RESPONSIVE GLOBAL SETTINGS
+========================================== */
+
+@media (max-width: 900px) {
     .section {
-        padding: 100px 0;
+        padding: 85px 0;
     }
 
     .section-title {
-        text-align: center;
-        margin-bottom: 55px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 650px) {
+    .container {
+        width: 88%;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .section-title {
+        margin-bottom: 40px;
     }
 
     .section-title span {
-        color: var(--primary);
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        font-size: 12px;
-        font-weight: 800;
+        font-size: 10px;
+        letter-spacing: 3px;
     }
 
     .section-title h2 {
-        font-size: clamp(30px, 5vw, 42px);
-        margin-top: 12px;
+        font-size: 31px;
     }
 
     .section-title p {
-        color: var(--muted);
-        margin-top: 12px;
-    }
-
-    .highlight {
-        color: var(--primary);
+        font-size: 14px;
     }
 
     .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 13px 25px;
-        border-radius: 7px;
-        font-weight: 700;
-        transition: var(--transition);
-        cursor: pointer;
-        border: 1px solid transparent;
+        padding: 12px 20px;
+        font-size: 13px;
     }
+}
 
-    .btn-primary {
-        background: var(--primary);
-        color: #151515;
-    }
+/* ==========================================
+ REDUCE MOTION ACCESSIBILITY
+========================================== */
 
-    .btn-primary:hover {
-        background: var(--primary-light);
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(255,140,50,.2);
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
-
-    .btn-outline {
-        border-color: var(--border);
-        color: var(--text);
-    }
-
-    .btn-outline:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-        transform: translateY(-4px);
-    }
+}
 
     /* ==========================================
        02. NAVBAR
